@@ -1,0 +1,6 @@
+header .nav-links {
+  line-height: 120px; }
+  header .nav-links li {
+    color: white;
+    list-style: none;
+    float: left; }

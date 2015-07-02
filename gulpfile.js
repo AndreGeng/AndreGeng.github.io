@@ -5,7 +5,7 @@ var $ = require('gulp-load-plugins')();
 gulp.task('styles', function(){
   return gulp.src('./stylesheets/*.scss')
           .pipe($.sass().on('error', handleError))
-          .pipe(gulp.dest('./css'));
+          .pipe(gulp.dest('./stylesheets'));
 });
 
 gulp.task('wiredep', function(){

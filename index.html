@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html ng-app="MyBlog">
 
 <head>
     <meta charset='utf-8'>
@@ -23,18 +23,26 @@
 
 </head>
 
-<body ng-app="MyBlog">
+<body>
     <header>
-        <div class="inner">
-            <h1>Andregeng</h1>
-            <h2>Developer Gone Wild</h2>
+        <div class="inner row">
+            <div class="col-xs-6">
+                <h1>AndreGeng</h1>
+                <h2>Developer Gone Wild</h2>
+            </div>
+            <div class="col-xs-6">
+                <ul class="nav-links">
+                    <li>Hello!</li>
+                    <li>Time Capsule</li>
+                </ul>
+            </div>
         </div>
     </header>
     <div id="content-wrapper">
         <div class="inner clearfix">
             <section id="main-content" ng-controller="MainCtrl">
                 <div class="post_item" ng-repeat="postItem in model.postList">
-                  <h3><a class="anchor" ng-href="postItem.url" aria-hidden="true"><span class="octicon octicon-link"></span></a>[[postItem.subject]]</h3>
+                  <h3><a class="anchor" ng-href="[[postItem.url]]" aria-hidden="true"><span class="octicon octicon-link">[[postItem.subject]]</span></a></h3>
                   <p>[[postItem.summary]]</p>
                 </div>
 
@@ -53,7 +61,7 @@
 
     <!-- inject:js -->
     <script src="javascripts/MainCtrl.js"></script>
-    <script src="javascripts/MainService.js"></script>
+    <script src="javascripts/PostListService.js"></script>
     <!-- endinject -->
 </body>
 
