@@ -15,15 +15,15 @@ gulp.task('wiredep', function(){
 });
 
 gulp.task('scripts', ['styles', 'wiredep'], function(){
-  var sources = gulp.src(['./javascripts/*.js', './stylesheets/*.css'], {read: false});
+  var sources = gulp.src(['./javascripts/**/*.js', './stylesheets/*.css'], {read: false});
   return gulp.src('./index.html')
           .pipe($.inject(sources, {addRootSlash:false}))
           .pipe(gulp.dest('.'));
 });
 
 gulp.task('watch', ['styles'] ,function () {
-  gulp.watch('stylesheets/*.scss', ['styles']);
-  gulp.watch('javascripts/*.js', ['scripts']);
+  gulp.watch('stylesheets/*.scss', ['styles', 'wiredep']);
+  gulp.watch('javascripts/**/*.js', ['scripts']);
   gulp.watch('bower.json', ['wiredep']);
 });
 

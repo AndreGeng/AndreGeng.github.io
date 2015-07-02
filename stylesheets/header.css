@@ -4,3 +4,5 @@ header .nav-links {
     color: white;
     list-style: none;
     float: left; }
+    header .nav-links li:hover {
+      color: #9ddcff; }

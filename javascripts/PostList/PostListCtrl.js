@@ -1,9 +1,9 @@
-angular.module('MyBlog', [])
+angular.module('MyBlog')
   .config(['$interpolateProvider', function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[');
     $interpolateProvider.endSymbol(']]');
   }])
-  .controller('MainCtrl', ['$scope', 'PostList', function ($scope, PostList) {
+  .controller('PostListCtrl', ['$scope', 'PostList', function ($scope, PostList) {
     $scope.model = {
       postList: []
     };

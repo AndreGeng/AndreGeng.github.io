@@ -1,0 +1,6 @@
+<section ng-controller="PostListCtrl">
+    <div class="post_item" ng-repeat="postItem in model.postList">
+        <h3><a class="anchor" ng-href="[[postItem.url]]" aria-hidden="true"><span class="octicon octicon-link">[[postItem.subject]]</span></a></h3>
+        <p>[[postItem.summary]]</p>
+    </div>
+</section>

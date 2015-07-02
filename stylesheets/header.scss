@@ -5,6 +5,9 @@ header{
       color: white;
       list-style: none;
       float: left;
+      &:hover{
+        color: #9ddcff;
+      }
     }
   }
 }
