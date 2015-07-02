@@ -1,0 +1,27 @@
+{
+  "name": "andregeng.github.io",
+  "version": "1.0.0",
+  "description": "Blog Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreGeng/AndreGeng.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreGeng/AndreGeng.github.io/issues"
+  },
+  "homepage": "https://github.com/AndreGeng/AndreGeng.github.io#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-inject": "^1.3.1",
+    "gulp-livereload": "^3.8.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-sass": "^2.0.1",
+    "wiredep": "^2.2.2"
+  }
+}

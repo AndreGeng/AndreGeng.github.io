@@ -1,0 +1,22 @@
+{
+  "name": "AndreGeng.github.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/AndreGeng/AndreGeng.github.io",
+  "authors": [
+    "Andre Geng <826962871@qq.com>"
+  ],
+  "description": "Blog Repository",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.1",
+    "jquery": "~2.1.4",
+    "bootstrap": "3.3.2"
+  }
+}
