@@ -1,14 +1,18 @@
 angular.module('MyBlog', ['ui.router'])
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     $stateProvider
-      .state("PostList", {
+      .state("Home", {
         url: "/posts",
-        templateUrl: "templates/postlist.html"
+        templateUrl: "templates/home.html"
       })
       .state("PostDetail", {
         url: "/posts/:id",
         templateUrl: "templates/postdetail.html"
+      })
+      .state("Hello!", {
+        url: "/aboutme",
+        templateUrl: "templates/hello.html"
       });
 
-      $urlRouterProvider.when("", "/posts");
+      $urlRouterProvider.otherwise('/posts');
   }]);

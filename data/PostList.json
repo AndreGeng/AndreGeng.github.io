@@ -1,6 +1,7 @@
 [{
   "subject":"测试标题",
-  "url":"http://baidu.com",
+  "id":"1",
   "summary":"Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.",
-  "date":"2014-12-06"
+  "date":"2014-12-06",
+  "postContent": "subject-2015-07-03.md"
 }]

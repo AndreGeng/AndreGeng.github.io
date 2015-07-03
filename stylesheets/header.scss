@@ -1,4 +1,8 @@
+$header_blue: #9ddcff;
 header{
+  h1:hover{
+    color: $header_blue;
+  }
   .nav-links{
     line-height: 120px;
     li{
@@ -6,7 +10,7 @@ header{
       list-style: none;
       float: left;
       &:hover{
-        color: #9ddcff;
+        color: $header_blue;
       }
     }
   }
