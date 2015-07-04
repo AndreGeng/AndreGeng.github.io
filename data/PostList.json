@@ -1,7 +1,7 @@
 [{
-  "subject":"测试标题",
+  "subject":"Android Compound View",
   "id":"1",
-  "summary":"Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.",
-  "date":"2014-12-06",
-  "postContent": "subject-2015-07-03.md"
+  "summary":"当构建复杂的应用时，我们总会遇到应用中很多地方都用到相同的一组控件。如果我们能把这些视图以及它们的业务逻辑组合在一起，将是非常方便的。这里我们简单介绍下怎么构建compound view来解决这种需求。",
+  "date":"2015-07-04",
+  "postContent": "AndroidCompoundView-2015-07-04.md"
 }]
