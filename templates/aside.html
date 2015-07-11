@@ -1,0 +1,13 @@
+<aside id="sidebar" ng-controller="SidebarCtrl">
+    <div class="avatar"></div>
+    <div class="github">Andre Geng</div>
+    <hr/>
+    <div class="category-title">精选推荐</div>
+    <ul>
+        <li ng-repeat="post in model.essentialPostList"><a href="" ng-click='goPostDetail(post)'>[[post.subject]]</a></li>
+    </ul>
+    <div class="category-title">最近更新</div>
+    <ul>
+        <li ng-repeat="post in model.latestPostList"><a href="" ng-click='goPostDetail(post)'>[[post.subject]]</a></li>
+    </ul>
+</aside>

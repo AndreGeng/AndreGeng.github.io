@@ -1,0 +1,35 @@
+#sidebar{
+    .avatar{
+        background: url("../images/journey.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-clip: padding-box;
+        height: 180px;
+        border-radius: 90px;
+        width: 180px;
+        background-position-x: -30px;
+        margin: auto;
+    }
+    .github{
+        text-align: center;
+        font-size: 15px;
+        margin-top: 10px;
+    }
+    .category-title{
+        color: #900;
+        font-size: 16px;
+    }
+    ul{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-left: 0px;
+        li{
+            border-bottom: 1px dashed #ccc;
+            padding: 0 0 5px 0;
+            margin: 5px 0 0 0;
+            word-wrap: break-word;
+            word-break: normal;
+            list-style: none;
+        }
+    }
+}
