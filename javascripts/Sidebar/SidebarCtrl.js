@@ -5,7 +5,7 @@ angular.module('MyBlog')
             latestPostList: []
         };
 
-        PostList.fetch(5).then(function(data) {
+        PostList.fetchWithLimit(5).then(function(data) {
             $scope.model.latestPostList = data;
         });
 

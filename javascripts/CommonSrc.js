@@ -16,9 +16,7 @@ angular.module('MyBlog')
                     //hide loadings
                     $rootScope.$broadcast("loader_hide");
                 }
-                if (response.status != 200){
-                    $log.error(response);
-                }
+
                 return response;
             },
 
@@ -29,7 +27,11 @@ angular.module('MyBlog')
                     $rootScope.$broadcast("loader_hide");
                 }
 
+                if (response.status != 200){
+                    $log.error(response);
+                }
+
                 return $q.reject(response);
             }
         };
-    }])
+    }]);

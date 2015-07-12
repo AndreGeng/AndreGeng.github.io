@@ -2,7 +2,7 @@ angular.module('MyBlog')
   .factory('PostList', ['$q', '$http', '$stateParams', function ($q, $http, $stateParams) {
     var convertFormat = function(data){
       data.postContent = data.postContent.replace('.md', '.html');
-      data.postContent = 'digested_posts/' + data.postContent;
+      data.postContent = '../digested_posts/' + data.postContent;
       return data;
     };
     return {
@@ -21,7 +21,14 @@ angular.module('MyBlog')
         var deferred = $q.defer();
 
         $http.get('./data/PostList.json').success(function(data, status, headers, config){
-          deferred.resolve(data.slice(0,limitNum));
+          deferred.resolve(data.sort(function(item, otherItem){
+            if(item.date > otherItem.date){
+              return -1;
+            }else if(item.date <= otherItem.date){
+              return 1;
+            }
+            return 0;
+          }).slice(0,limitNum));
         }).error(function(data, status, headers, config){
           deferred.reject(data);
         });
@@ -42,7 +49,7 @@ angular.module('MyBlog')
         return deferred.promise;
       },
 
-      get: function(id){
+      get: function(){
         var deferred = $q.defer();
         $http.get('./data/PostList.json').success(function(data, status, headers, config){
           for(var i=0;i<data.length;i++){
