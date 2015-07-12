@@ -1,5 +1,5 @@
 angular.module('MyBlog', ['ui.router'])
-    .config(['$interpolateProvider', '$httpProvider', '$locationProvider', function($interpolateProvider, $httpProvider, $locationProvider) {
+    .config(['$interpolateProvider', '$httpProvider', '$locationProvider', '$urlMatcherFactoryProvider', function($interpolateProvider, $httpProvider, $locationProvider, $urlMatcherFactoryProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
 
@@ -7,5 +7,6 @@ angular.module('MyBlog', ['ui.router'])
             enabled: true,
             requireBase: false
         });
+        $urlMatcherFactoryProvider.strictMode(false)
         $httpProvider.interceptors.push('globalInteceptor');
     }]);

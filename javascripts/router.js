@@ -6,7 +6,7 @@ angular.module('MyBlog')
         templateUrl: "templates/home.html"
       })
       .state("PostDetail", {
-        url: "/posts/:id",
+        url: "/posts/{id:[0-9]+}",
         templateUrl: "templates/postdetail.html"
       })
       .state("Hello!", {
