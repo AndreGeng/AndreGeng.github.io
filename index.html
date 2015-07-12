@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://css-spinners.com/css/spinner/inner-circles.css" type="text/css">
     <!-- inject:css -->
     <link rel="stylesheet" href="stylesheets/common.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
@@ -47,7 +48,7 @@
             <ng-include src="'templates/aside.html'" scope="" onload=""></ng-include>
         </div>
     </div>
-
+    <div loader class="loader-container"></div>
 
 
     <!-- bower:js -->
@@ -58,12 +59,15 @@
     <!-- endbower -->
 
     <!-- inject:js -->
-    <script src="javascripts/router.js"></script>
-    <script src="javascripts/Header/HeaderCtrl.js"></script>
-    <script src="javascripts/PostDetail/PostDetailCtrl.js"></script>
+    <script src="javascripts/app.js"></script>
     <script src="javascripts/Sidebar/SidebarCtrl.js"></script>
-    <script src="javascripts/Home/HomeCtrl.js"></script>
+    <script src="javascripts/PostDetail/PostDetailCtrl.js"></script>
     <script src="javascripts/Home/PostListService.js"></script>
+    <script src="javascripts/Home/HomeCtrl.js"></script>
+    <script src="javascripts/Header/HeaderCtrl.js"></script>
+    <script src="javascripts/router.js"></script>
+    <script src="javascripts/CommonSrc.js"></script>
+    <script src="javascripts/CommonDir.js"></script>
     <!-- endinject -->
 </body>
 

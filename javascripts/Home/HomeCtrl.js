@@ -1,8 +1,4 @@
 angular.module('MyBlog')
-    .config(['$interpolateProvider', function($interpolateProvider) {
-        $interpolateProvider.startSymbol('[[');
-        $interpolateProvider.endSymbol(']]');
-    }])
     .controller('HomeCtrl', ['$scope', 'PostList', '$state', function($scope, PostList, $state) {
         $scope.model = {
             postList: []
@@ -10,8 +6,6 @@ angular.module('MyBlog')
 
         PostList.fetch().then(function(data) {
             $scope.model.postList = data;
-        }, function(data) {
-            console.log(data);
         });
 
         $scope.goPostDetail = function(detailItem) {

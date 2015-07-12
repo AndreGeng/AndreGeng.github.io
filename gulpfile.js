@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var wiredep = require('wiredep').stream;
 var $ = require('gulp-load-plugins')();
+var es = require('event-stream');
 
 gulp.task('styles', function(){
   return gulp.src('./stylesheets/*.scss')
@@ -15,9 +16,10 @@ gulp.task('wiredep', function(){
 });
 
 gulp.task('default', ['styles', 'wiredep'], function(){
-  var sources = gulp.src(['./javascripts/**/*.js', './stylesheets/*.css'], {read: false});
+  var sourcesJs = gulp.src(['./javascripts/**/*.js']).pipe($.angularFilesort()).pipe($.debug({title: 'DEBUG:'}));
+  var sourcesCss = gulp.src(['./stylesheets/*.css'], {read: false}).pipe($.debug({title: 'DEBUG:'}));
   return gulp.src('./index.html')
-          .pipe($.inject(sources, {addRootSlash:false}))
+          .pipe($.inject(es.merge(sourcesJs, sourcesCss), {addRootSlash:false}))
           .pipe(gulp.dest('.'));
 });
 

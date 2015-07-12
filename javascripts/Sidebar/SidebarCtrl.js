@@ -7,14 +7,10 @@ angular.module('MyBlog')
 
         PostList.fetch(5).then(function(data) {
             $scope.model.latestPostList = data;
-        }, function(data) {
-            console.log(data);
         });
 
         PostList.getEssentialPostList().then(function(data) {
             $scope.model.essentialPostList = data;
-        }, function(data) {
-            console.log(data);
         });
 
         $scope.goPostDetail = function(detailItem) {

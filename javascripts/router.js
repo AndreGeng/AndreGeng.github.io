@@ -1,4 +1,4 @@
-angular.module('MyBlog', ['ui.router'])
+angular.module('MyBlog')
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
     $stateProvider
       .state("Home", {

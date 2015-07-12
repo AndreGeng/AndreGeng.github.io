@@ -5,7 +5,5 @@ angular.module('MyBlog')
     };
     PostList.get().then(function(data){
         $scope.model.postDetailUrl = data.postContent||'';
-    }, function(data){
-      console.log(data);
     });
   }]);
