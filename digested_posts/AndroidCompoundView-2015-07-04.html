@@ -1,6 +1,6 @@
 <p>当构建复杂的应用时，我们总会遇到应用中很多地方都用到相同的一组控件。如果我们能把这些视图以及它们的业务逻辑组合在一起，将是非常方便的。这里我们简单介绍下怎么构建compound view来解决这种需求。</p>
-<h1 id="1-">1.需求</h1>
-<p>今天在用微信时，瞄到在我的中心里，有个我的地址，新建地址界面如下</p>
+<p>#1.需求
+今天在用微信时，瞄到在我的中心里，有个我的地址，新建地址界面如下</p>
 <p><img src="/images/add_address.png" alt="新增地址"></p>
 <p>可以看到这里的EditText左边会有文字，查了下android官方只支持edittext左边放一些图片。其实这种场景个人觉得挺适合用compound view的。下面是实现的大概思路：</p>
 <p>我们把这里要实现在控件叫EnhancedEdittext</p>
@@ -10,8 +10,8 @@
 <li>在EnhancedEdittext里计算label的宽度，然后把相应设置edittext的paddingLeft值</li>
 </ul>
 <p>恩恩，想来是可行的，下面来具体实现。</p>
-<h1 id="2-">2.实现</h1>
-<p>首先实现FrameLayout的构造方法如下：</p>
+<p>#2.实现
+首先实现FrameLayout的构造方法如下：</p>
 <pre><code>public EnhancedEdittext(Context context) {
     super(context);
     initViews(context);
@@ -69,8 +69,8 @@ protected void onLayout(boolean changed, int left, int top, int right, int botto
 }
 </code></pre><p>到这里基本完成开始测试。。。发现个问题，当同一个activity有两个EnhancedEidttext里，转屏，会发现输入框里的内容全变成了第二个输入框的值。查了下发现，在转屏时android系统会根据view的id做key去维护一个map,当activity重建完成会再把存储的值赋回给我们的视图。但我们的两个compoundview里面edittext的id是一样的，这时就会出问题。</p>
 <p>这里解决的办法是我们需要自己去处理custom的compound view数据的存储与恢复。</p>
-<h1 id="3-">3.转屏时数据存储和恢复。</h1>
-<p>大家应该都知道这部分代码应该写在onSaveInstanceState（）和onRestoreInstanceState（）中，但这里除了这两个方法我们还要去重写dispatchSaveInstanceState（）和dispatchRestoreInstanceState（），下面是代码：</p>
+<p>#3.转屏时数据存储和恢复。
+大家应该都知道这部分代码应该写在onSaveInstanceState（）和onRestoreInstanceState（）中，但这里除了这两个方法我们还要去重写dispatchSaveInstanceState（）和dispatchRestoreInstanceState（），下面是代码：</p>
 <pre><code>@Override
 protected Parcelable onSaveInstanceState() {
     Bundle bundle = new Bundle();
