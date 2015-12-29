@@ -1,0 +1,73 @@
+<h1 id="css-">CSS中元素垂直与水平居中</h1>
+<p>更新：发现一位外国大神总结的更好，英语无障碍的小伙伴请直接移步: <a href="http://codepen.io/shshaw/full/gEiDt/">Absolute centering</a> by <a href="https://github.com/shshaw">Shaw</a></p>
+<p>最近突然发现以前自己对css理解有些小儿科了，总以为它是一个经验学科，慢慢看的多了就自然会了，所以平时也不怎么注意。现在终于有些想了解其中原理的苗头了，而且发现有些css规则还是得总结下的，不然以后它总是会时不时的跳出来，又要重新去调去试太浪费时间了，这里这个不得不说应该是大家都会遇到的问题吧，写下自己的经验，这个方法应该有很多，以后慢慢补充。。小伙伴们发现不对或是新的方法还烦请帮忙补充:)</p>
+<p>闲话少叙，进入正题：
+关于水平居中，我们一般有<code>text-align: center</code>和<code>margin: 0 auto</code>这两个，相对比较简单，这里只列下垂直居中的方案：</p>
+<ul>
+<li><p>table-cell与vertical-align</p>
+<p>这个思路是利用vertical-align, 这个属性只在inline和table-cell的box下才会起作用，所以多加一个div包裹child,我们的html如下：</p>
+<pre><code>&lt;div class=&quot;parent&quot;&gt;
+      &lt;div class=&quot;child-container&quot;&gt;
+          &lt;div class=&quot;child&quot;&gt;child&lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+</code></pre><p>css如下：</p>
+<pre><code>.parent{
+      width: 400px;
+      height: 400px;
+      background: red;
+      display: table;
+  }
+  .child-container{
+      vertical-align: middle;
+      background: yellow;
+      display: table-cell;
+  }
+  .child{
+      width: 200px;
+      height: 200px;
+      background: green;
+      margin: 0 auto;
+  }
+</code></pre><ul>
+<li>优点：兼容性比较好, 对IE这种困难户也可以支持到8+</li>
+<li>缺点：增加了无语义的标签</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>使用position: absolute</p>
+<p>这个的想法是使用margin: auto来实现水平竖直居中，直接上代码：
+html:</p>
+<pre><code>&lt;div class=&quot;parent&quot;&gt;
+      &lt;div class=&quot;child&quot;&gt;child&lt;/div&gt;
+  &lt;/div&gt;
+</code></pre><p>  css:</p>
+<pre><code>  .parent{
+      width: 400px;
+      height: 400px;
+      background: red;
+      position: relative;
+  }
+  .child{
+      width: 200px;
+      height: 200px;
+      background: green;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+  }
+</code></pre><ul>
+<li>优点：兼容性比较好, IE8+</li>
+<li>缺点：child必须给定height</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>使用transform</p>
+<p>这个以后写吧。。</p>
+</li>
+</ul>
