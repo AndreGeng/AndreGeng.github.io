@@ -1,0 +1,85 @@
+<h1 id="-ie-">题目：标准事件模型与ie事件模型的区别</h1>
+<p>今天楼主去某房企面试了下，面的是前端开发，感觉他们公司前端比较看重：</p>
+<ul>
+<li>浏览器的兼容(IE大家懂的)，毕竟他们这边网站是面向大众的适配IE，这我也能理解。但楼主真心没仔细看过这方面的东西。但也不用鄙视我吧- -！况且我都解释了我的工作中平时这个真的用不上啊。</li>
+<li>原生js操作dom. 这个楼主做的也不多，略懂。平时真的是写写angular,其它就jquery用的多。</li>
+</ul>
+<p>不管怎么说今天面试下来总体表现还是不好的，虽然对面试官颇有微词，但他们的面试题还是可以的，也别抱怨工作中没用了，毕竟也是些知识点，再说这些学起来难度也不是太大。</p>
+<p>不过最后楼主还是那句话We are the cool kids, we do not debug in IE :)</p>
+<h2 id="-">正题：</h2>
+<ul>
+<li><p>标准的事件模型是分捕获和冒泡两个阶段的，这里的区别就是IE下面只有冒泡的过程。</p>
+<ol>
+<li><p>那事件的挂载在IE和标准里面又有什么不同呢？</p>
+<ul>
+<li>标准的大家都知道是用addEventListener, 方法签名：
+target.addEventListener(type, listener[, useCapture]); //参考：<a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">addEventListener-MDN</a></li>
+</ul>
+<p>e.g: ele.addEventListener(&#39;click&#39;, clickHandler, false);</p>
+<ul>
+<li>IE下呢这个方法叫做attachEvent, 方法签名：target.attachEvent(eventNameWithOn, callback)</li>
+</ul>
+<p>e.g: ele.attachEvent(&#39;onclick&#39;, clickHandler)</p>
+<p><strong>注意：</strong>IE下这个方法的监听还要加上&#39;on&#39;的，哎- -！</p>
+</li>
+<li><p>取消事件的传递IE和标准又有什么不同呢？</p>
+<ul>
+<li>标准说我们用eve.stopPropogation()</li>
+<li>IE: eve.cancelBabble = true;</li>
+</ul>
+</li>
+<li><p>阻止事件默认行为IE和标准又有什么不同呢？</p>
+<ul>
+<li>标准说我们用eve.preventDefault()</li>
+<li>IE: eve.returnValue = false;</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>js原生怎么操作DOM<ol>
+<li>DOM节点创建
+var ele = document.createElement(tagName);
+ vs
+var $ele = $(tagName);</li>
+<li>添加创建的节点到document中
+var child = ele.appendChild(child);
+ vs
+var $child = $elem.append(child);</li>
+<li>给节点添加样式
+ele.style.color = &quot;#fff&quot;;
+ele.style.marginTop = &quot;30px&quot;;
+ vs
+$ele.css(&#39;color&#39;, &#39;#fff&#39;)
+$ele.css({&#39;margin-top&#39;, &#39;30px&#39;});</li>
+<li>设置元素内容
+ele.innerHtml = content;
+ vs
+ele.html(content);</li>
+<li>设置元素的类名
+var cName = ele.className;
+ele.className = cName;
+ vs
+$ele.addClass/hasClass/removeClass</li>
+<li>select DOM元素
+document.getElementById(id);
+document.getElementByClassName(names);
+document.getElementsByClassName(names);
+document.getElementsByTagName(name);
+document.querySelector(selectors);
+document.querySelectorAll(selectors);
+7.find一个元素
+document.getElementById(id).getElementsByTagName(tagName);
+ele.childNodes
+ele.children
+<strong>注意：</strong>这里children与childNodes区别如下：<pre><code>var el = document.createElement(&quot;div&quot;);
+el.textContent = &quot;foo&quot;
+el.childNodes.length === 1; // TextNode is a node child
+el.children.length === 0; // no Element children
+</code></pre>ele.nextSibling
+ele.nextElementSibling</li>
+<li>其它的一些操作大家可以参照: <a href="http://youmightnotneedjquery.com/">YOU MIGHT NOT NEED JQUERY</a></li>
+</ol>
+</li>
+</ul>
