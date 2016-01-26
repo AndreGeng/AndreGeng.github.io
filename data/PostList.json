@@ -32,4 +32,11 @@
     "summary": "不管怎么说今天面试下来总体表现还是不好的，虽然对面试官颇有微词，但他们的面试题还是可以的，也别抱怨工作中没用了，毕竟也是些知识点，再说这些学起来难度也不是太大。不过最后楼主还是那句话We are the cool kids, we do not debug in IE :)",
     "date": "2016-01-22",
     "postContent": "ieVsStandard_jsVsJquery-2016-01-22.md"
+},
+{
+    "subject": "关于css float",
+    "id": "6",
+    "summary": "浮动是让某元素脱离标准流，漂浮在标准流之上的一种布局方式。任何元素被设置为浮动元素后，就表明它是块级元素，拥有宽高属性。",
+    "date": "2016-01-26",
+    "postContent": "RegardingFloat-2016-01-26.md"
 }]
