@@ -4,7 +4,9 @@
   "description": "Blog Repository",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp buildposts",
+    "start": "http-server"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
     "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-markdown": "^1.0.0",
     "gulp-sass": "^2.0.1",
+    "http-server": "^0.9.0",
     "wiredep": "^2.2.2"
   },
   "dependencies": {

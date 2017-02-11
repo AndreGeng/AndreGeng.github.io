@@ -1,0 +1,33 @@
+<h1 id="css-">css布局（-）老掉牙的三列自适应布局</h1>
+<p>最近被公司安排做电面有时会问这个问题，大多数同学都回答的出一种，再问还能想的出别的方式实现么，就有点卡壳。</p>
+<p>ps: 有的同学还一付不屑的语气，觉得我可以写的出这种布局就行了啊，要那么多种有毛线用。好吧，其实我也只是想通过这种问题看下你对css的熟练程度，技术这种东西还是要有种求知欲的吧。</p>
+<p>自己想到的几种方式<a href="https://github.com/AndreGeng/practice-css-layout/tree/master/3column-layout">三列布局示例</a>。
+大家可以直接参考下例子，下面是几种方式的简单说明：</p>
+<ol>
+<li><p>绝对定位</p>
+<ul>
+<li>元素可以任意调换位置还是比较方便的, 这样也可以控制各部分的渲染顺序</li>
+</ul>
+</li>
+<li><p>float</p>
+<ul>
+<li>左右栏先渲染</li>
+<li>先让左右栏分别左右浮动，再给middle加上相应的margin即可</li>
+</ul>
+</li>
+<li><p>flex</p>
+<ul>
+<li>每次用都感叹太方便了。。兼容性的话，我主要在mobile上用的比较多，用autoprefixer加了各种浏览器前缀后，现在也没发现有太大问题。</li>
+</ul>
+</li>
+<li>负margin(大名鼎鼎的双飞翼布局)<ul>
+<li>这个貌似最早是大神玉伯提出的，有不少总结的直接上链接吧
+<a href="http://www.cnblogs.com/front-end/archive/2012/08/29/zq_0406.html">双飞翼布局</a></li>
+</ul>
+</li>
+<li><p>BFC</p>
+<ul>
+<li>这个其实和float的方式差不多，不同的地方是防止middle和float的元素重叠的方式不是采用margin而是通过bfc的方式。</li>
+</ul>
+</li>
+</ol>
