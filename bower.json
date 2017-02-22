@@ -18,6 +18,14 @@
     "angular": "~1.4.1",
     "jquery": "~2.1.4",
     "bootstrap": "3.3.2",
-    "ui-router": "~0.2.15"
+    "ui-router": "~0.2.15",
+    "css-spinners": "^2.2.0"
+  },
+  "overrides": {
+    "css-spinners": {
+      "main": [
+        "./css/spinner/dots.css"
+      ]
+    }
   }
 }
