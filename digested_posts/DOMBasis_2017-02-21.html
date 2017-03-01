@@ -1,0 +1,20 @@
+<h1 id="dom-offsetheight-vs-clientheight-vs-scrollheight">DOM基础(一)之offsetHeight vs clientHeight vs scrollHeight</h1>
+<p>preface: 之前博客总是不更新, 总是想着等自己把所有东西梳理的井井有条之后再写, 额..可总也奈何自己懒货的毛病, 进展很不喜人. 所以还是想换个方式吧, 把自己学到的东西写一写, 再多的零也不上一个实际的1的吧. 回头再来系统的梳理这些东西.</p>
+<h2 id="-https-developer-mozilla-org-en-us-docs-web-css-css_box_model-introduction_to_the_css_box_model-">要理解这几个概念得理解下<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model">盒模型</a></h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/clientHeight">clientHeight</a></p>
+<pre><code> returns the inner height of an element in pixels, including padding but not the horizontal scrollbar height, border, or margin
+</code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight">offsetHeight</a></p>
+<pre><code>is a measurement which includes the element borders, the element vertical padding, the element horizontal scrollbar (if present, if rendered) and the element CSS height.
+</code></pre><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollHeight">scrollHeight</a></p>
+<pre><code>is a measurement of the height of an element&#39;s content including content not visible on the screen due to overflow
+</code></pre><p>简单点说如下:</p>
+<p>scrollHeight: content + padding
+这里的content height也包含由于overflow而导致不可见的部分</p>
+<p>clientHeight: content + padding
+content可见高度 + padding</p>
+<p>offsetHeight: content + padding + border + scrollbar
+content可见高度 + padding + border + scrollbar</p>
+<p><img src="../images/clientHeight_vs_offsetHeight_vs_scrollHeight.png" alt="clientHeight offsetHeight scrollHeight对比"></p>
+<p>ps:
+getComputedStyle拿到的height仅是元素content可见部分的高度
+getBoundingRect拿到的height一般等于offsetHeight</p>
