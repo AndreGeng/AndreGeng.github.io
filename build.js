@@ -38,7 +38,7 @@ function getCreateDate(filename) {
 }
 
 function getSubject(filename, fileContent) {
-  var regex = /#[\s]*([^\n]+)/;
+  var regex = /##[\s]*([^\n]+)/;
   var matchResult = regex.exec(fileContent);
   if (matchResult && matchResult[1]) {
     return matchResult[1];
@@ -48,7 +48,7 @@ function getSubject(filename, fileContent) {
 }
 
 function getSummary(filename, fileContent) {
-  var regex = /##[\s]*([^\n]+)/;
+  var regex = /###[\s]*([^\n]+)/;
   var matchResult = regex.exec(fileContent);
   if (matchResult && matchResult[1]) {
     return matchResult[1];

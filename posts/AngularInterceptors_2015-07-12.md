@@ -1,6 +1,6 @@
-# 拦截器简介
+## 拦截器简介
 
-## AngularJs中的$http服务允许我们方便的和后台进行HTTP通信。我们有时会有统一的捕获http request或是处理http response的需求，例如：在request发到server端前在header中加入sessionid, 在获得response后统一的对错误进行log记录， 又或者当页面在请求数据时自动的显示一个loading spinner等等。Angular的拦截器正是为这种情况所准备的。这里我们就来介绍angular中的拦截器。
+### AngularJs中的$http服务允许我们方便的和后台进行HTTP通信。我们有时会有统一的捕获http request或是处理http response的需求，例如：在request发到server端前在header中加入sessionid, 在获得response后统一的对错误进行log记录， 又或者当页面在请求数据时自动的显示一个loading spinner等等。Angular的拦截器正是为这种情况所准备的。这里我们就来介绍angular中的拦截器。
 
 $httpProvider服务中包含有一组拦截器。换句话说Angular中的拦截器就是一个加入到$httpProvider拦截器数组中的一个服务。
 

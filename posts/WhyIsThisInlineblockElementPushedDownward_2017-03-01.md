@@ -1,6 +1,6 @@
-# css基础(二)之为什么这个行内元素对齐这么奇怪?
+## css基础(二)之为什么这个行内元素对齐这么奇怪?
 
-## 个人感觉css学习的瓶颈在于你要认识到自己需要去弄清楚一些东西, 而不是每次看到同一个问题都在chrome调试工具里试来试去, 2/3分钟过去了, 效果达到了才感叹一句: 怎么会和这个属性有关系? css真NM奇怪? 但是真的是它奇怪么? 还是你从来就没去想认真的了解过它的原理- -!(个人想法, 自我提醒之用, 不喜勿喷..)
+### 个人感觉css学习的瓶颈在于你要认识到自己需要去弄清楚一些东西, 而不是每次看到同一个问题都在chrome调试工具里试来试去, 2/3分钟过去了, 效果达到了才感叹一句: 怎么会和这个属性有关系? css真NM奇怪? 但是真的是它奇怪么? 还是你从来就没去想认真的了解过它的原理- -!(个人想法, 自我提醒之用, 不喜勿喷..)
 
 今天看同事在讨论类似下图所示的页面:
 
@@ -30,9 +30,7 @@
 
 要去除这个gap也很简单, 把img改为display: block, 或是改动下vertical-align的值
 
-回到这里的问题, second元素的默认对齐属性也是baseline, 那关键问题就在于inline-block的元素的baseline到底在哪里? 这类问题怎么验证, 我们可以去翻下规范[w3c vertical-align](https://www.w3.org/TR/CSS2/visudet.html#leading)(
-  [//]: # (TODO: _GZ_ vertical-align这属性也挺搞的, 自己刚学的时候也不太分的清, 有空再写篇文章单独介绍下)
-  )
+回到这里的问题, second元素的默认对齐属性也是baseline, 那关键问题就在于inline-block的元素的baseline到底在哪里? 这类问题怎么验证, 我们可以去翻下规范[w3c vertical-align](https://www.w3.org/TR/CSS2/visudet.html#leading)(vertical-align的介绍大家可以参见[这篇](http://andregeng.github.io/posts/10))
 
 规范里面最重要一句如下:
 

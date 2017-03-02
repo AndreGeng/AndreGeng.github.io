@@ -1,5 +1,5 @@
-<h1 id="css-">css基础(二)之为什么这个行内元素对齐这么奇怪?</h1>
-<h2 id="-css-chrome-2-3-css-nm-">个人感觉css学习的瓶颈在于你要认识到自己需要去弄清楚一些东西, 而不是每次看到同一个问题都在chrome调试工具里试来试去, 2/3分钟过去了, 效果达到了才感叹一句: 怎么会和这个属性有关系? css真NM奇怪? 但是真的是它奇怪么? 还是你从来就没去想认真的了解过它的原理- -!(个人想法, 自我提醒之用, 不喜勿喷..)</h2>
+<h2 id="css-">css基础(二)之为什么这个行内元素对齐这么奇怪?</h2>
+<h3 id="-css-chrome-2-3-css-nm-">个人感觉css学习的瓶颈在于你要认识到自己需要去弄清楚一些东西, 而不是每次看到同一个问题都在chrome调试工具里试来试去, 2/3分钟过去了, 效果达到了才感叹一句: 怎么会和这个属性有关系? css真NM奇怪? 但是真的是它奇怪么? 还是你从来就没去想认真的了解过它的原理- -!(个人想法, 自我提醒之用, 不喜勿喷..)</h3>
 <p>今天看同事在讨论类似下图所示的页面:</p>
 <p><img src="../images/WhyIsThisInlineElementPushedDownward-2017-03-01.png" alt="行内元素对齐"></p>
 <p>大家也可以直接看<a href="http://codepen.io/AndreGeng/pen/ZebMRX">codepen</a>上的snippet, 这里简化了页面里那些干拢元素, 问题是为什么first元素会像&quot;有重力一样, 掉下来&quot;. 希望的效果是&#39;first&#39;元素和第二段文本的顶端对齐.</p>
@@ -14,8 +14,7 @@
 </code></pre><p>我们会发现img下方会出现一段空白, 这就是因为img是放在baseline上的, 它正文的空间其实是给行内文本留的&#39;decending area&#39;(找了半天不记得在哪儿看到的这个词了, 反正就是给像&#39;y&#39;,&#39;q&#39;这类字母用的区域)</p>
 <p><img src="../images/WhyIsThisInlineElementPushedDownward_2-2017-03-01.png" alt="img下的空白"></p>
 <p>要去除这个gap也很简单, 把img改为display: block, 或是改动下vertical-align的值</p>
-<p>回到这里的问题, second元素的默认对齐属性也是baseline, 那关键问题就在于inline-block的元素的baseline到底在哪里? 这类问题怎么验证, 我们可以去翻下规范<a href="https://www.w3.org/TR/CSS2/visudet.html#leading">w3c vertical-align</a>(</p>
-<p>  )</p>
+<p>回到这里的问题, second元素的默认对齐属性也是baseline, 那关键问题就在于inline-block的元素的baseline到底在哪里? 这类问题怎么验证, 我们可以去翻下规范<a href="https://www.w3.org/TR/CSS2/visudet.html#leading">w3c vertical-align</a>(vertical-align的介绍大家可以参见<a href="http://andregeng.github.io/posts/10">这篇</a>)</p>
 <p>规范里面最重要一句如下:</p>
 <pre><code>The baseline of an &#39;inline-block&#39; is the baseline of its last line box in the normal flow, unless it has either no in-flow line boxes or if its &#39;overflow&#39; property has a computed value other than &#39;visible&#39;, in which case the baseline is the bottom margin edge.
 </code></pre><p>翻译下就是:</p>
