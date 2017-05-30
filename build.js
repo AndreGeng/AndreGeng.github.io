@@ -60,7 +60,7 @@ function generatePostList() {
     return item;
   })
   .reverse();
-  fs.writeFileSync(path.resolve(__dirname, 'data', 'PostList.json'), JSON.stringify(postList), {encoding: 'utf8'});
+  fs.writeFileSync(path.resolve(__dirname, 'data', 'PostList.json'), JSON.stringify(postList, null, 2), {encoding: 'utf8'});
   console.log(chalk.green('build finished!'));
 }
 /**

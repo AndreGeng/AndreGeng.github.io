@@ -1,0 +1,103 @@
+<h2 id="es6-destructuring">ES6(一) Destructuring</h2>
+<h3 id="-node-command-line-es6-es6-7-blog-">昨天在写node command line的应用的时候, 发现一些es6的语法还是掌握的不是太熟练, 所以这里准备写个系统的es6/7的blog, 也把相关的知识再巩固一下, 第一篇就先来说说平时用的很多的对象/数组的结构赋值吧</h3>
+<p>Refer links: <a href="https://ponyfoo.com/articles/es6-destructuring-in-depth">es6-destructuring-in-depth</a></p>
+<p>结构赋值是无疑是我用的最多的新特性之一. 也非常简单. 它可以方便的从对象/数组里提取出你需要的内容.</p>
+<pre><code>const foo = { bar: &#39;bar&#39;, baz: 3 };
+const { bar, baz } = foo;
+console.log(bar); // &#39;bar&#39;
+console.log(baz); // 3
+</code></pre><p>对象的解构赋值也允许给变量重命名.</p>
+<pre><code>const foo = { bar: &#39;bar&#39;, baz: 3 };
+const { bar: a, baz: b } = foo;
+console.log(a); // &#39;bar&#39;
+console.log(b); // 3
+</code></pre><p>你也可以从对象中提取深层次的属性, 同样变量重命名这里也是适用的.</p>
+<pre><code>const foo = { bar: { deep: &#39;deep&#39;, deep2: &#39;deep2&#39; } };
+const { bar: { deep, deep2: baz } } = foo;
+console.log(deep); // &#39;deep&#39;
+console.log(baz); // &#39;deep2&#39;
+</code></pre><p>如果你试图去访问的深层次的属性的parent不存在的话, 会有Exception throw出来.</p>
+<pre><code>const { foo: { bar } } = {baz: &#39;ouch&#39;}; // Exception
+</code></pre><p>我们也可以设置默认值, 当要访问的属性返回undefined的时候, 默认值会被应用.</p>
+<pre><code>const { foo = 3 } = { foo: 2 };
+console.log(foo); // 2
+
+const { bar = 3 } = {};
+console.log(bar); // 3
+</code></pre><p>解构赋值对数组也同样适用.</p>
+<pre><code>const [foo] = [19];
+console.log(foo); // 19
+</code></pre><p>默认值也同样适用.</p>
+<pre><code>const [foo] = [];
+console.log(foo); // undefined
+
+const [bar=10] = [];
+console.log(bar); // 10
+</code></pre><h4 id="-">解构赋值的使用场景</h4>
+<p>解构赋值有很多的适用场景, 下面是一些用的比较多的地方</p>
+<ol>
+<li><p>当你的一个function返回值为对象时, destructuring 会让操作表达的更简洁</p>
+<pre><code> const getCoords = () =&gt; ({ x: 10, y: 22 });
+ const { x, y } = getCoords();
+ console.log(x); // 10
+ console.log(y); // 22
+</code></pre><p> ps: 注意这里的箭头函数在函数体是单选的情况且返回值为对象的情况下, 要用()把函数体包裹起来, 不然解析器会报错的</p>
+</li>
+<li><p>一个相似但相反的情况是, 你可以把解构用在函数的传参上面.</p>
+<pre><code> const random = ({ min=1, max=300 }) =&gt; Math.floor(Math.random() * (max - min)) + min;
+ console.log(random({})); // 40
+ console.log(random({ max: 24 })); // 18
+</code></pre><p> 如果这里你想把整个option对象变为optional的, 可以把写法改成下面的这样.</p>
+<pre><code> const random = ({ min=1, max=300 } = {}) =&gt; Math.floor(Math.random() * (max - min)) + min;
+ console.log(random()); // 290
+</code></pre></li>
+<li><p>解构赋值可以不借助中间变量来实现两个变量值的互换.</p>
+<pre><code> const swap = () =&gt; {
+     let left = 10;
+     let right = 20;
+     if (right &gt; left) [left, right] = [right, left];
+     console.log(left); // 20
+     console.log(right); // 10
+ }
+ swap();
+</code></pre></li>
+<li><p>数组的解构赋值可以用来方便的跳过一些你不需要的值.</p>
+<pre><code> const getUrlParts = (url) =&gt; {
+     const blogRegex = /^(https?):\/\/(\w+).github.io/;
+     return blogRegex.exec(url);
+ }
+ const [, protocol, blogger] = getUrlParts(&#39;http://andregeng.github.io&#39;);
+ console.log(protocol); // &#39;http&#39;
+ console.log(blogger); // &#39;andregeng&#39;
+</code></pre></li>
+</ol>
+<h2 id="-">一些特殊情况</h2>
+<ol>
+<li><p>import语句的语法和解构语法是不同的, 它们看起来很相似, 但import语句并不遵循解构语法</p>
+<pre><code> ```
+ import React, { PropTypes } from &#39;react&#39;;
+
+ ```
+
+ import语句与解构语法有以下几点不同:
+ 1. 默认值语法不适用于import语句
+     ```
+     import { PropTypes={} } from &#39;react&#39;; // Exception
+     ```
+ 2. &#39;Deep&#39; destructuring语法不适用于import语句
+     ```
+     import { foo: { bar } } from &#39;test&#39;; // Exception
+     ```
+ 3. 重命名语法不适用于import语句
+     ```
+     import { foo: bar } from &#39;test&#39;; // Exception
+ ```
+</code></pre></li>
+<li><p>对已声明的对象解构赋值
+细心的你有可能注意到了, 前面的解构语句中用到的变量都是和它的声明放在一起的, 那我们能不能对已经声明的变更做解构赋值呢?</p>
+<pre><code>let foo;
+let bar;
+({foo, bar} = { foo:1, bar:2 });
+</code></pre><p>这是可以的, 只是要注意下第三行这里的小括号, <strong>没有的话,解析器可是会报错的哦~</strong></p>
+</li>
+</ol>
