@@ -1,5 +1,5 @@
 <h2 id="android-compound-view">Android Compound View</h2>
-<h3 id="-compound-view-">当构建复杂的应用时，我们总会遇到应用中很多地方都用到相同的一组控件。如果我们能把这些视图以及它们的业务逻辑组合在一起，将是非常方便的。这里我们简单介绍下怎么构建compound view来解决这种需求。</h3>
+<h3 id="当构建复杂的应用时，我们总会遇到应用中很多地方都用到相同的一组控件。如果我们能把这些视图以及它们的业务逻辑组合在一起，将是非常方便的。这里我们简单介绍下怎么构建compound-view来解决这种需求。">当构建复杂的应用时，我们总会遇到应用中很多地方都用到相同的一组控件。如果我们能把这些视图以及它们的业务逻辑组合在一起，将是非常方便的。这里我们简单介绍下怎么构建compound view来解决这种需求。</h3>
 <p>当构建复杂的应用时，我们总会遇到应用中很多地方都用到相同的一组控件。如果我们能把这些视图以及它们的业务逻辑组合在一起，将是非常方便的。这里我们简单介绍下怎么构建compound view来解决这种需求。</p>
 <p>#1.需求
 今天在用微信时，瞄到在我的中心里，有个我的地址，新建地址界面如下</p>
@@ -24,20 +24,17 @@ public EnhancedEdittext(Context context, AttributeSet attrs) {
     TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.EnhancedEdittext);
     label = (String) typedArray.getText(R.styleable.EnhancedEdittext_label);
     initViews(context);
-}
-</code></pre><p>在xml的构建方法里，我们定义了一个自定义属性，属性的声名是要放在values/attr.xml中：</p>
+}</code></pre><p>在xml的构建方法里，我们定义了一个自定义属性，属性的声名是要放在values/attr.xml中：</p>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;resources&gt;
     &lt;declare-styleable name=&quot;EnhancedEdittext&quot;&gt;
         &lt;attr name=&quot;label&quot; format=&quot;string&quot;&gt;&lt;/attr&gt;
     &lt;/declare-styleable&gt;
-&lt;/resources&gt;
-</code></pre><p>这里的initView要来生成我们的视图，主要就是inflate我们的layout文件.</p>
+&lt;/resources&gt;</code></pre><p>这里的initView要来生成我们的视图，主要就是inflate我们的layout文件.</p>
 <pre><code>private void initViews(Context ctx) {
     LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.enhanced_et, this);
-}
-</code></pre><p>enhanced_et代码如下：</p>
+}</code></pre><p>enhanced_et代码如下：</p>
 <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;merge xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
 android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot;&gt;
@@ -53,23 +50,20 @@ android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_
         android:id=&quot;@+id/value_et&quot;
         android:layout_height=&quot;wrap_content&quot;
         android:layout_width=&quot;match_parent&quot;/&gt;
-&lt;/merge&gt;
-</code></pre><p>这里用到了merge标签，不太熟悉的同学可以自行百度下。然后在onFinishInflate中给我们的视图设置初始值。onFinishInflate方法是在我们组合视图里的所有视图都inflated and ready to use的时候被调用，所以我们视图设值的代码写在这里：</p>
+&lt;/merge&gt;</code></pre><p>这里用到了merge标签，不太熟悉的同学可以自行百度下。然后在onFinishInflate中给我们的视图设置初始值。onFinishInflate方法是在我们组合视图里的所有视图都inflated and ready to use的时候被调用，所以我们视图设值的代码写在这里：</p>
 <pre><code>@Override
 protected void onFinishInflate() {
     super.onFinishInflate();
     label_tv = (TextView)findViewById(R.id.label_tv);
     label_tv.setText(label);
     value_et = (EditText)findViewById(R.id.value_et);
-}
-</code></pre><p>接下来我们要获得label的宽度，然后设置edittext的paddingLeft，这里我把代码写在了onLayout（）中，因为onLayout会在onMeasure()之后被调用，在里面我们就已经可以拿到子视图的size:</p>
+}</code></pre><p>接下来我们要获得label的宽度，然后设置edittext的paddingLeft，这里我把代码写在了onLayout（）中，因为onLayout会在onMeasure()之后被调用，在里面我们就已经可以拿到子视图的size:</p>
 <pre><code>@Override
 protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
     super.onLayout(changed, left, top, right, bottom);
     int labelW = label_tv.getMeasuredWidth();
     value_et.setPadding(labelW + Utilities.dpToPixels(getContext(), 10), 0, 0, 0);
-}
-</code></pre><p>到这里基本完成开始测试。。。发现个问题，当同一个activity有两个EnhancedEidttext里，转屏，会发现输入框里的内容全变成了第二个输入框的值。查了下发现，在转屏时android系统会根据view的id做key去维护一个map,当activity重建完成会再把存储的值赋回给我们的视图。但我们的两个compoundview里面edittext的id是一样的，这时就会出问题。</p>
+}</code></pre><p>到这里基本完成开始测试。。。发现个问题，当同一个activity有两个EnhancedEidttext里，转屏，会发现输入框里的内容全变成了第二个输入框的值。查了下发现，在转屏时android系统会根据view的id做key去维护一个map,当activity重建完成会再把存储的值赋回给我们的视图。但我们的两个compoundview里面edittext的id是一样的，这时就会出问题。</p>
 <p>这里解决的办法是我们需要自己去处理custom的compound view数据的存储与恢复。</p>
 <p>#3.转屏时数据存储和恢复。
 大家应该都知道这部分代码应该写在onSaveInstanceState（）和onRestoreInstanceState（）中，但这里除了这两个方法我们还要去重写dispatchSaveInstanceState（）和dispatchRestoreInstanceState（），下面是代码：</p>
@@ -105,8 +99,7 @@ protected void dispatchSaveInstanceState(SparseArray&lt;Parcelable&gt; container
 @Override
 protected void dispatchRestoreInstanceState(SparseArray&lt;Parcelable&gt; container) {
     super.dispatchThawSelfOnly(container);
-}
-</code></pre><p>查看文档你会发现android saving instance state的过程是，activity会递归的遍历layout hierarchy，对每个视图调用View.saveHierarchyState()，而这个方法又会去调用View.dispatchSaveInstanceState(),</p>
+}</code></pre><p>查看文档你会发现android saving instance state的过程是，activity会递归的遍历layout hierarchy，对每个视图调用View.saveHierarchyState()，而这个方法又会去调用View.dispatchSaveInstanceState(),</p>
 <ul>
 <li>如果这个视图是view的话，View.oSaveInstanceState()会被调用，然后它会把数据存在一个Parcelable中，再以view的id为key把这个Parcelable存储下来。</li>
 <li>如果这个视图是ViewGroup的话，它会负责把对View.dispatchSaveInstance()分发到它的子视图上。</li>

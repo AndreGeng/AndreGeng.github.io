@@ -1,5 +1,5 @@
-<h2 id="-ie-">题目：标准事件模型与ie事件模型的区别</h2>
-<h3 id="-we-are-the-cool-kids-we-do-not-debug-in-ie-">不管怎么说今天面试下来总体表现还是不好的，虽然对面试官颇有微词，但他们的面试题还是可以的，也别抱怨工作中没用了，毕竟也是些知识点，再说这些学起来难度也不是太大。不过最后楼主还是那句话We are the cool kids, we do not debug in IE :)</h3>
+<h2 id="题目：标准事件模型与ie事件模型的区别">题目：标准事件模型与ie事件模型的区别</h2>
+<h3 id="不管怎么说今天面试下来总体表现还是不好的，虽然对面试官颇有微词，但他们的面试题还是可以的，也别抱怨工作中没用了，毕竟也是些知识点，再说这些学起来难度也不是太大。不过最后楼主还是那句话we-are-the-cool-kids-we-do-not-debug-in-ie-">不管怎么说今天面试下来总体表现还是不好的，虽然对面试官颇有微词，但他们的面试题还是可以的，也别抱怨工作中没用了，毕竟也是些知识点，再说这些学起来难度也不是太大。不过最后楼主还是那句话We are the cool kids, we do not debug in IE :)</h3>
 <p>今天楼主去某房企面试了下，面的是前端开发，感觉他们公司前端比较看重：</p>
 <ul>
 <li>浏览器的兼容(IE大家懂的)，毕竟他们这边网站是面向大众的适配IE，这我也能理解。但楼主真心没仔细看过这方面的东西。但也不用鄙视我吧- -！况且我都解释了我的工作中平时这个真的用不上啊。</li>
@@ -7,7 +7,7 @@
 </ul>
 <p>不管怎么说今天面试下来总体表现还是不好的，虽然对面试官颇有微词，但他们的面试题还是可以的，也别抱怨工作中没用了，毕竟也是些知识点，再说这些学起来难度也不是太大。</p>
 <p>不过最后楼主还是那句话We are the cool kids, we do not debug in IE :)</p>
-<h2 id="-">正题：</h2>
+<h2 id="正题：">正题：</h2>
 <ul>
 <li><p>标准的事件模型是分捕获和冒泡两个阶段的，这里的区别就是IE下面只有冒泡的过程。</p>
 <ol>
@@ -69,16 +69,15 @@ document.getElementByClassName(names);
 document.getElementsByClassName(names);
 document.getElementsByTagName(name);
 document.querySelector(selectors);
-document.querySelectorAll(selectors);
-7.find一个元素
+document.querySelectorAll(selectors);</li>
+<li>find一个元素
 document.getElementById(id).getElementsByTagName(tagName);
 ele.childNodes
 ele.children
 <strong>注意：</strong>这里children与childNodes区别如下：<pre><code>var el = document.createElement(&quot;div&quot;);
 el.textContent = &quot;foo&quot;
 el.childNodes.length === 1; // TextNode is a node child
-el.children.length === 0; // no Element children
-</code></pre>ele.nextSibling
+el.children.length === 0; // no Element children</code></pre>ele.nextSibling
 ele.nextElementSibling</li>
 <li>其它的一些操作大家可以参照: <a href="http://youmightnotneedjquery.com/">YOU MIGHT NOT NEED JQUERY</a></li>
 </ol>
