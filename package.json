@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/AndreGeng/AndreGeng.github.io#readme",
   "devDependencies": {
-    "Promise": "^1.0.5",
     "chalk": "^1.1.3",
     "event-stream": "3.3.4",
     "gulp": "^3.9.0",
